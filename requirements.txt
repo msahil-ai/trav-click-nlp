@@ -1,36 +1,67 @@
-# ---------- Core RAG Framework ----------
+# ===============================
+# Core RAG / LLM Framework
+# ===============================
 llama-index==0.10.68
 llama-index-core==0.10.68.post1
-
-# ---------- OpenAI Integration ----------
-openai==1.40.3
 llama-index-llms-openai==0.1.31
 llama-index-embeddings-openai==0.1.11
 llama-index-program-openai==0.1.7
-
-# ---------- Data Readers ----------
 llama-index-readers-file==0.1.31
+
+openai==1.40.3
+
+# ===============================
+# OCR & Computer Vision
+# ===============================
+opencv-python>=4.7.0.72
+pytesseract>=0.3.10
 pypdf==4.3.1
 
-# ---------- Data Models ----------
-pydantic==2.5.3
+# ===============================
+# Deep Learning / Transformers
+# ===============================
+torch>=2.1.0,<3.0.0
+torchvision>=0.15.1,<1.0.0
+torchaudio>=2.1.0,<3.0.0
 
-# ---------- Database & Vector Store ----------
-psycopg2-binary==2.9.9
-chromadb==0.4.24
-sentence-transformers==2.7.0
-huggingface-hub==0.19.4
+transformers>=4.35.0
+datasets>=2.13.0
+peft>=0.4.0
+accelerate>=0.21.0
+trl>=0.5.0
 
-# ---------- Utilities ----------
-python-dotenv==1.0.1	# pinned for compatibility
-tenacity==8.5.0
-
-# ---------- Numerical (safe for NLP) ----------
+# ===============================
+# Model & Training Utilities
+# ===============================
+bitsandbytes>=0.39.0
+sentencepiece>=0.1.99
+protobuf>=4.24.0
+einops>=0.6.0
+safetensors>=0.3.0
+tqdm>=4.65.0
+scipy>=1.11.0
 numpy==1.26.4
 
-# ---------- SQL connectivity ----------
+# ===============================
+# Embeddings & Vector Stores
+# ===============================
+chromadb==0.4.24
+sentence-transformers==2.7.0
+huggingface-hub>=0.19.4
+
+# ===============================
+# Database & SQL
+# ===============================
 psycopg2-binary==2.9.9
 
-# ---------- PDF attachments ----------
+# ===============================
+# Config & Reliability
+# ===============================
+python-dotenv==1.0.1
+tenacity==8.5.0
+
+# ===============================
+# PDF Generation
+# ===============================
 fpdf==1.7.2
 xhtml2pdf==0.2.11
