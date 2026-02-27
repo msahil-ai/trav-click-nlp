@@ -102,14 +102,14 @@ The system bridges structured database data with AI search capabilities. It conn
 
 Before wasting compute resources on impossible requests, the system validates the incoming JSON. It fetches a distinct list of supported countries directly from the Postgres database and skips the email if the requested country is unsupported or the JSON is empty.
 
-### 🔹 3. "Exact Match or Better Deal" (`soft_match2.py`)
+### 🔹 3. "Exact Match or Better Deal" (`soft_match.py`)
 
 Finding the perfect package requires two steps:
 
 1. **Semantic Search:** ChromaDB finds packages with the right "vibe" based on the user's query.
 2. **Rule-Based Reranking:** A strict mathematical filter drops any package that doesn't exactly match the requested city, or fails to meet the minimum required duration or passenger capacity.
 
-### 🔹 4. Dual Generation (`generate_test.py` & `save_pdf_html.py`)
+### 🔹 4. Dual Generation (`generate_response.py` & `save_pdf_html.py`)
 
 The system generates two beautifully formatted HTML assets:
 
@@ -130,14 +130,13 @@ project/
 ├── main.py                   # Master script to run the entire pipeline end-to-end
 ├── email_fetcher.py          # Gmail email fetching & UID tracking
 ├── fetcher_inference.py      # Batch email processing loop (Phase 1)
-├── inference.py              # Single email inference
 ├── gemma_merged_model.pt     # Fine-tuned Gemma weights
 │
 ├── db_connection.py          # PostgreSQL connection setup
 ├── embed_DB.py               # Vectorizing DB packages into ChromaDB
 ├── fallbacks.py              # Validation logic against unsupported requests
-├── soft_match2.py            # Semantic + Rule-based package filtering
-├── generate_test.py          # HTML Email & Invoice template generation
+├── soft_match.py             # Semantic + Rule-based package filtering
+├── generate_response.py          # HTML Email & Invoice template generation
 ├── save_pdf_html.py          # HTML to PDF conversion logic
 ├── mailman.py                # SMTP dispatch and attachment handling
 ├── rag_pipeline.py           # Main orchestration loop for Phase 2
