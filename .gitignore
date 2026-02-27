@@ -1,0 +1,60 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.env
+
+# Byte-compiled / optimized / DLL files
+*.egg-info/
+*.egg
+*.dist-info/
+*.eggs
+
+# Distribution / packaging
+build/
+dist/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDE/Editor configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env
+
+# Logs and databases
+data/
+*.sqlite3
+
+# Project-specific
+outputs/
+tour_vector_db/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# PyCharm
+*.iml
+
+# pytest
+.cache/
+
+# temporary files
+*.tmp
+
+# backups
+*~
+
+# ignore any sensitive files
+secret_key.txt
