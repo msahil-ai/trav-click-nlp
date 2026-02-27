@@ -1,9 +1,3 @@
-Here is the complete, merged, and highly professional README file for your GitHub repository. It perfectly blends your NLP extraction documentation with the new RAG-based recommendation and automated response pipeline we built.
-
-I have also strategically placed requests for infographic diagrams (``) so that when rendered on a platform that supports dynamic image fetching (or if you replace them with actual image links later), the architecture becomes instantly visual.
-
----
-
 # 📧 NLP–OCR Email Processing & RAG Automation System
 
 **Automated Travel & Hotel Booking Information Extraction and Recommendation**
@@ -100,7 +94,7 @@ Each processed email generates a separate JSON file, which triggers Phase 2:
 
 Once the JSON is extracted, the automated travel agent takes over.
 
-### 🔹 1. Data Embeddings (`embed2.py`)
+### 🔹 1. Data Embeddings (`embed_DB.py`)
 
 The system bridges structured database data with AI search capabilities. It connects to a PostgreSQL database to retrieve package IDs, city names, prices, and default premium hotels. It handles missing prices gracefully by using SQL `COALESCE` to default null prices to 0. The data is then embedded using `sentence-transformers/all-MiniLM-L6-v2` and permanently stored in a ChromaDB `PersistentClient`.
 
@@ -133,19 +127,20 @@ Finally, the system securely connects to Google's SMTP servers. It initiates a f
 ```text
 project/
 │
+├── main.py                   # Master script to run the entire pipeline end-to-end
 ├── email_fetcher.py          # Gmail email fetching & UID tracking
-├── fetcher_inference.py      # Batch email processing loop
+├── fetcher_inference.py      # Batch email processing loop (Phase 1)
 ├── inference.py              # Single email inference
 ├── gemma_merged_model.pt     # Fine-tuned Gemma weights
 │
 ├── db_connection.py          # PostgreSQL connection setup
-├── embed2.py                 # Vectorizing DB packages into ChromaDB
+├── embed_DB.py               # Vectorizing DB packages into ChromaDB
 ├── fallbacks.py              # Validation logic against unsupported requests
 ├── soft_match2.py            # Semantic + Rule-based package filtering
 ├── generate_test.py          # HTML Email & Invoice template generation
 ├── save_pdf_html.py          # HTML to PDF conversion logic
 ├── mailman.py                # SMTP dispatch and attachment handling
-├── pipeline_test.py          # Main orchestration loop for Phase 2
+├── rag_pipeline.py           # Main orchestration loop for Phase 2
 │
 ├── outputs/                  # Extracted JSON outputs (Handoff point)
 ├── pdf_responses/            # Generated PDF Quotations
@@ -179,8 +174,10 @@ pip install -r requirements.txt
 
 ### 2️⃣ Configure `.env`
 
+Create a `.env` file in the root directory with the following structure:
+
 ```env
-# IMAP Extraction Credentials
+# IMAP Extraction & SMTP Dispatch Credentials
 EMAIL_HOST=imap.gmail.com
 EMAIL_USER=your_email@gmail.com
 EMAIL_APP_PASSWORD=your_app_password
@@ -193,22 +190,19 @@ DB_USER=postgres
 DB_PASS=your_db_password
 
 ```
----
 
-## 🚀 Option A
+### 🚀 Option A: Run the Entire System
 
-### 1️⃣ DIRECTLY RUN USING A SINGLE FILE
+Directly run the master orchestration script to fetch emails, extract data, and send responses in one go:
 
 ```bash
 python main.py
 
 ```
 
-## 🚀 Option B : WHILE TESTING YOU CAN RUN SEPERATELY
+### 🚀 Option B: Step-by-Step (For Testing & Debugging)
 
-
-### 3️⃣ Initialize the Vector Database (Run Once)
-
+**3️⃣ Initialize the Vector Database (Run Once)**
 Before processing requests, embed your PostgreSQL data into ChromaDB:
 
 ```bash
@@ -216,16 +210,15 @@ python embed_DB.py
 
 ```
 
-### 4️⃣ Run the Complete Pipeline
-
-**Step A:** Fetch emails and extract JSON via Gemma 2B:
+**4️⃣ Run the Complete Pipeline in Stages**
+*Step A:* Fetch emails and extract JSON via Gemma 2B:
 
 ```bash
 python fetcher_inference.py
 
 ```
 
-**Step B:** Process JSONs, match packages, and send automated PDF replies:
+*Step B:* Process JSONs, match packages, and send automated PDF replies:
 
 ```bash
 python rag_pipeline.py
