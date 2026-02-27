@@ -96,15 +96,15 @@ def main():
     #do not delete the below lines as they are crucial for the flow of the program. They are just commented out for now to prevent errors while testing the new generator.
 
         #response = generator.generate(query, nodes) # Keep this for backward compatibility if you want to test the old generator
-        print("\n........Recommendation:\n")
+        #print("\n........Recommendation:\n")
         #print(response)
         #save_response_as_pdf(response_text=response, email_index=idx)
         #pdf_path = save_response_as_pdf(response_text=response, email_index=idx) #pdf_path 
-        recipient = email.get("email") #field in the JSON
+        #recipient = email.get("email") #field in the JSON
 
         # 3. Send the email!
         #send_pdf_email(recipient_email=recipient, pdf_path=pdf_path)
-        send_pdf_email(recipient_email=recipient, pdf_path=pdf_path, html_content=email_html) # Send the email with the HTML body
+        #send_pdf_email(recipient_email=recipient, pdf_path=pdf_path, html_content=email_html) # Send the email with the HTML body
 
 
 if __name__ == "__main__":

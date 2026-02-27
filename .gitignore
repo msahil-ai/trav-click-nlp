@@ -37,6 +37,8 @@ data/
 # Project-specific
 outputs/
 tour_vector_db/
+gemma2b_model/
+gemma_merged_model.pt
 
 # macOS
 .DS_Store

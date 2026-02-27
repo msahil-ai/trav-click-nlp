@@ -23,8 +23,8 @@ def save_response_as_pdf(html_content: str, email_index: int) -> str:
 
     # 4. Check for errors
     if pisa_status.err:
-        print(f"❌ Error creating PDF for email {email_index}")
+        print(f":: Error creating PDF for email {email_index}")
     else:
-        print(f"📄 Dynamic HTML-to-PDF successfully saved to: {file_path}")
+        print(f":: Dynamic HTML-to-PDF successfully saved to: {file_path}")
 
     return file_path
