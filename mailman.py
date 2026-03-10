@@ -7,14 +7,14 @@ load_dotenv()
 
 def send_pdf_email(recipient_email: str, pdf_path: str, html_content: str):
     if not recipient_email:
-        print("⚠️ No recipient email address provided. Skipping.")
+        print(".....No recipient email address provided. Skipping.")
         return
 
     # --- Setup your credentials ---
     sender_email = os.getenv("SENDER_EMAIL")
     app_password = os.getenv("EMAIL_APP_PASSWORD")
 
-    # 1. 🛑 CRITICAL FIX: Create a brand new message INSIDE the function
+    # 1. CRITICAL FIX: Create a brand new message INSIDE the function
     # This guarantees a fresh envelope for every single customer loop.
     msg = EmailMessage()
     msg['Subject'] = "Your Personalized Travel Itinerary is Here!"

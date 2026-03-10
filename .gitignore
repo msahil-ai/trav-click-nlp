@@ -36,6 +36,7 @@ data/
 
 # Project-specific
 outputs/
+alt/
 tour_vector_db/
 gemma2b_model/
 gemma_merged_model.pt

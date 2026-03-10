@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import time
 
 def run_step(command, step_name):
     print(f"\n>>>>>> STARTING: {step_name} \n")
@@ -13,7 +14,7 @@ def run_step(command, step_name):
     print(result.stdout)
 
     if result.returncode != 0:
-        print(f"\n❌ ERROR in {step_name}")
+        print(f"\n... ERROR in {step_name}")
         print(result.stderr)
         sys.exit(1)
 
@@ -23,9 +24,10 @@ def run_step(command, step_name):
 if __name__ == "__main__":
     # Step 1: Fetch emails + extract JSON
     run_step(
-        ["fetcher_inference_batch.py"],
+        ["fetcher_inference_batch_gpt.py"],
         "Email Fetching & Inference"
     )
+    start_time = time.time()
 
     # Step 2: Embed packages into Vector DB
     run_step(
@@ -40,3 +42,5 @@ if __name__ == "__main__":
     )
 
     print("\n>>>> ALL PIPELINE STEPS COMPLETED SUCCESSFULLY.")
+    end_time = time.time()
+    print(f"Total time taken for the entire pipeline: {end_time - start_time:.2f} seconds")

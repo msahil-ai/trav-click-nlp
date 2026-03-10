@@ -8,7 +8,8 @@ llama-index-embeddings-openai==0.1.11
 llama-index-program-openai==0.1.7
 llama-index-readers-file==0.1.31
 
-openai==1.40.3
+openai<2.0.0
+httpx==0.27.2
 
 # ===============================
 # OCR & Computer Vision
